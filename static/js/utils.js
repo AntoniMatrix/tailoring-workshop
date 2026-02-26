@@ -47,3 +47,36 @@ function esc(s) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.getElementById("latestOrdersTrack");
+  if (!track) return;
+
+  const wrap = track.closest(".orders-slider");
+  const prev = wrap.querySelector(".slide-btn.prev");
+  const next = wrap.querySelector(".slide-btn.next");
+
+  const getStep = () => {
+    const first = track.querySelector(".slide");
+    if (!first) return 320;
+    const gap = 12;
+    return first.getBoundingClientRect().width + gap;
+  };
+
+  const updateButtons = () => {
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    const x = track.scrollLeft;
+    const canScroll = track.scrollWidth > track.clientWidth + 2;
+
+    prev.disabled = !canScroll || x <= 2;
+    next.disabled = !canScroll || x >= maxScroll - 2;
+  };
+
+  prev.addEventListener("click", () => track.scrollBy({ left: -getStep(), behavior: "smooth" }));
+  next.addEventListener("click", () => track.scrollBy({ left:  getStep(), behavior: "smooth" }));
+
+  track.addEventListener("scroll", updateButtons);
+  window.addEventListener("resize", updateButtons);
+
+  updateButtons();
+});
