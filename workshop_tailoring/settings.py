@@ -19,10 +19,10 @@ load_dotenv(BASE_DIR / ".env")
 # Core
 # ----------------------------
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    "seridoozi-workshop.ir", "www.seridoozi-workshop.ir", "127.0.0.1"
+    "seridoozi-workshop.ir", "www.seridoozi-workshop.ir", "127.0.0.1", "localhost"
 ]
 
 # ----------------------------
@@ -155,6 +155,11 @@ SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = False  # must be readable by JS if you use Fetch with CSRF cookie
 SESSION_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SAMESITE = "Lax"
+# SSL
+
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
 # Only set secure cookies when HTTPS is enabled
 SESSION_COOKIE_SECURE = not DEBUG and SECURE_SSL_REDIRECT
