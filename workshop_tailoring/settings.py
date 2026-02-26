@@ -19,12 +19,10 @@ load_dotenv(BASE_DIR / ".env")
 # Core
 # ----------------------------
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
-DEBUG = os.getenv("DEBUG", "1") == "1"
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    h.strip()
-    for h in os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
-    if h.strip()
+    "seridoozi-workshop.ir", "www.seridoozi-workshop.ir"
 ]
 
 # ----------------------------
