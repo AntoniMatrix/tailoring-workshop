@@ -22,7 +22,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "seridoozi-workshop.ir", "www.seridoozi-workshop.ir"
+    "seridoozi-workshop.ir", "www.seridoozi-workshop.ir", "127.0.0.1"
 ]
 
 # ----------------------------
