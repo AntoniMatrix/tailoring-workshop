@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block meta_robots %}noindex,nofollow{% endblock %}
+{% block meta_title %}مدیریت سفارش | {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}ورود به حساب کاربری برای ثبت و پیگیری سفارش‌های سری‌دوزی.{% endblock %}
+{% block content %}
+<h2>مدیریت سفارش‌ها</h2>
+
+<!-- Orders list loads via JS API -->
+<div class="card">
+  <div id="ordersList">در حال بارگذاری...</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/admin_orders.js"></script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block meta_robots %}noindex,nofollow{% endblock %}
+{% block meta_title %}مدیریت سفارش | {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}ورود به حساب کاربری برای ثبت و پیگیری سفارش‌های سری‌دوزی.{% endblock %}
+{% block content %}
+<h2>جزئیات سفارش #{{ order_id }}</h2>
+
+<div class="grid2">
+  <div class="card">
+    <h3>اطلاعات</h3>
+    <div id="orderBox">...</div>
+
+    <hr>
+
+    <h3>تغییر وضعیت</h3>
+    <select id="statusSelect">
+      <option value="new">جدید</option>
+      <option value="review">در حال بررسی</option>
+      <option value="quoted">پیش‌فاکتور</option>
+      <option value="confirmed">تأیید</option>
+      <option value="production">تولید</option>
+      <option value="ready">آماده تحویل</option>
+      <option value="delivered">تحویل</option>
+      <option value="canceled">لغو</option>
+    </select>
+    <button class="btn" onclick="changeStatus()">ثبت وضعیت</button>
+
+    <hr>
+
+    <h3>قیمت‌گذاری</h3>
+    <label>مبلغ کل</label>
+    <input id="total_price" type="number" value="0">
+    <label>بیعانه</label>
+    <input id="deposit_amount" type="number" value="0">
+    <button class="btn" onclick="setPricing()">ثبت قیمت</button>
+  </div>
+
+  <div class="card">
+    <h3>یادداشت داخلی</h3>
+    <textarea id="noteText"></textarea>
+    <button class="btn" onclick="addNote()">ثبت یادداشت</button>
+
+    <hr>
+
+    <h3>پیام‌ها</h3>
+    <div id="msgs">...</div>
+
+    <hr>
+
+    <h3>ثبت پرداخت</h3>
+    <label>مبلغ</label>
+    <input id="pay_amount" type="number" value="0">
+    <label>روش</label>
+    <input id="pay_method" value="card">
+    <label>وضعیت</label>
+    <select id="pay_status">
+      <option value="paid">پرداخت شده</option>
+      <option value="pending">در انتظار</option>
+      <option value="failed">ناموفق</option>
+    </select>
+    <button class="btn" onclick="addPayment()">ثبت پرداخت</button>
+
+    <hr>
+
+    <h3>پرداخت‌ها</h3>
+    <div id="payments">...</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  {{ order_id|json_script:"order-id-data" }}
+  <script>
+    // Expose ORDER_ID as a global variable for external JS files
+    window.ORDER_ID = JSON.parse(
+      document.getElementById("order-id-data").textContent
+    );
+  </script>
+  <script src="/static/js/admin_order_detail.js"></script>
+{% endblock %}

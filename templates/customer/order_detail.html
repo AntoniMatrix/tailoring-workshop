@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block meta_robots %}noindex,nofollow{% endblock %}
+{% block meta_title %}جزئیات سفارش | {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}پیگیری وضعیت سفارش، پیام‌ها و پرداخت‌ها در پنل مشتری.{% endblock %}
+
+{% block content %}
+<h2>جزئیات سفارش #{{ order.id }}</h2>
+
+<div class="card">
+  <div id="orderBox">در حال بارگذاری...</div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>پیام به کارگاه</h3>
+    <textarea id="msgText" placeholder="پیام شما..."></textarea>
+    <button class="btn" onclick="sendMsg()">ارسال</button>
+
+    <hr>
+    <div id="msgs">...</div>
+  </div>
+
+  <div class="card">
+    <h3>پرداخت‌ها</h3>
+    <div id="payments">...</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  {{ order.id|json_script:"order-id-data" }}
+  <script>
+    // Expose ORDER_ID globally for external JS file
+    window.ORDER_ID = JSON.parse(document.getElementById("order-id-data").textContent);
+  </script>
+  <script src="/static/js/customer_order_detail.js"></script>
+{% endblock %}

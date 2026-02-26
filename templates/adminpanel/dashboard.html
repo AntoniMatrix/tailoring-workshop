@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block meta_robots %}noindex,nofollow{% endblock %}
+{% block meta_title %}داشبورد ادمین | {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}ورود به حساب کاربری برای ثبت و پیگیری سفارش‌های سری‌دوزی.{% endblock %}
+{% block content %}
+<h2>داشبورد مدیریت</h2>
+
+<!-- Quick stats -->
+<div class="card">
+  <div class="row gap wrap">
+    <div class="stat">جدید: <b>{{ stats.new }}</b></div>
+    <div class="stat">بررسی: <b>{{ stats.review }}</b></div>
+    <div class="stat">پیش‌فاکتور: <b>{{ stats.quoted }}</b></div>
+    <div class="stat">تأیید: <b>{{ stats.confirmed }}</b></div>
+    <div class="stat">تولید: <b>{{ stats.production }}</b></div>
+    <div class="stat">آماده: <b>{{ stats.ready }}</b></div>
+  </div>
+</div>
+
+<!-- Permission visibility (useful for debugging role setup) -->
+<div class="card">
+  <h3>دسترسی‌های شما</h3>
+  <ul>
+    <li>View all orders: <b>{{ perms.view_all_orders }}</b></li>
+    <li>Change status: <b>{{ perms.change_order_status }}</b></li>
+    <li>Set pricing: <b>{{ perms.set_pricing }}</b></li>
+    <li>Financial access: <b>{{ perms.view_financial_reports }}</b></li>
+  </ul>
+
+  <a class="btn" href="/panel/orders/">مدیریت سفارش‌ها</a>
+</div>
+{% endblock %}

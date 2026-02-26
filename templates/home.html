@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block meta_title %}اتوماسیون صنعتی تولید پوشاک | {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}
+اتوماسیون سفارش سری‌دوزی: ثبت سفارش، ارسال فایل و نمونه، دریافت پیش‌فاکتور، پیگیری تولید و تحویل. مناسب مزون‌ها و برندهای پوشاک.
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="panel hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="pill">⚙️ سیستم ثبت سفارش سری‌دوزی • صنعتی • سفارش‌محور</div>
+      <h1>اتوماسیون صنعتی تولید پوشاک</h1>
+      <p>
+        سفارش عمده را ثبت کنید، فایل و نمونه را ارسال کنید، پیش‌فاکتور دریافت کنید و
+        مرحله‌به‌مرحله وضعیت تولید را پیگیری کنید.
+      </p>
+
+      <div class="actions">
+        {% if user.is_authenticated %}
+          <a class="btn" href="/orders/">ثبت/پیگیری سفارش</a>
+          {% if user.is_superuser or user.groups.exists %}
+            <a class="btn secondary" href="/panel/">پنل مدیریت</a>
+          {% endif %}
+        {% else %}
+          <a class="btn" href="/accounts/register/">شروع همکاری</a>
+          <a class="btn secondary" href="/accounts/login/">ورود مشتری</a>
+        {% endif %}
+        <a class="btn ghost" href="#services">مشاهده خدمات</a>
+      </div>
+    </div>
+
+    <div class="quick">
+      <div class="q">
+        <div class="small">ورود سریع</div>
+        <div style="font-weight:900">ثبت سفارش مرحله‌ای</div>
+        <div class="small">بدون تماس‌های طولانی</div>
+      </div>
+      <div class="q">
+        <div class="small">شفافیت</div>
+        <div style="font-weight:900">پیش‌فاکتور و قیمت‌گذاری</div>
+        <div class="small">قابل پیگیری در پنل</div>
+      </div>
+      <div class="q">
+        <div class="small">کنترل کیفیت</div>
+        <div style="font-weight:900">ارسال نمونه و فایل</div>
+        <div class="small">ضمیمه داخل سفارش</div>
+      </div>
+      <div class="q">
+        <div class="small">تحویل</div>
+        <div style="font-weight:900">زمان‌بندی تولید</div>
+        <div class="small">وضعیت لحظه‌ای</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="section-title" id="services">
+  <h2>خدمات اتوماسیون کارگاهی</h2>
+  <div class="line"></div>
+  <span class="small">سفارش‌محور • قابل توسعه</span>
+</div>
+
+<section class="grid4">
+  <div class="card">
+    <div class="feature">
+      <div class="ico">✂</div>
+      <div>
+        <h3>برش و آماده‌سازی</h3>
+        <p>ثبت جزئیات سایزبندی، نوع پارچه، تعداد و توضیحات برای کاهش خطا.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="feature">
+      <div class="ico">🧵</div>
+      <div>
+        <h3>سری‌دوزی صنعتی</h3>
+        <p>ثبت سفارش‌های عمده با قابلیت مدیریت وضعیت تولید مرحله‌به‌مرحله.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="feature">
+      <div class="ico">📐</div>
+      <div>
+        <h3>الگو و فایل</h3>
+        <p>آپلود فایل‌ها/نمونه‌ها داخل سفارش و کنترل دسترسی برای امنیت.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="feature">
+      <div class="ico">📦</div>
+      <div>
+        <h3>تحویل و فاکتور</h3>
+        <p>ثبت پیش‌فاکتور، بیعانه و گزارش‌های مالی با دسترسی نقش‌محور.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO / SAMPLE WORK -->
+<div class="section-title" style="margin-top:24px">
+  <h2>نمونه سفارش‌ها و پروژه‌ها</h2>
+  <div class="line"></div>
+  <span class="small">قابل جایگزینی با داده واقعی</span>
+</div>
+
+<section class="grid3">
+  <div class="card soft">
+    <div class="badge">سری‌دوزی</div>
+    <h3 style="margin-top:8px">تولید مانتو ۲۰۰ عدد</h3>
+    <div class="small">سایزبندی: 38-46 • پارچه: کرپ • وضعیت: تولید</div>
+  </div>
+  <div class="card soft">
+    <div class="badge">الگو</div>
+    <h3 style="margin-top:8px">یونيفورم سازمانی</h3>
+    <div class="small">ارسال فایل • پیش‌فاکتور صادر شد • کنترل کیفیت</div>
+  </div>
+  <div class="card soft">
+    <div class="badge">تحویل</div>
+    <h3 style="margin-top:8px">شلوار پارچه‌ای ۵۰۰ عدد</h3>
+    <div class="small">بیعانه ثبت شد • آماده تحویل • تسویه</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="panel" style="margin-top:18px; padding:18px">
+  <div class="row wrap">
+    <div>
+      <h2 style="margin:0">می‌خوای همین الان سفارش ثبت کنی؟</h2>
+      <div class="muted">داخل پنل، سفارش‌ها و پیام‌ها و فایل‌ها یکجا مدیریت می‌شن.</div>
+    </div>
+    <div class="row">
+      {% if user.is_authenticated %}
+        <a class="btn" href="/orders/">ورود به سفارش‌ها</a>
+      {% else %}
+        <a class="btn" href="/accounts/register/">شروع همکاری</a>
+        <a class="btn secondary" href="/accounts/login/">ورود</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

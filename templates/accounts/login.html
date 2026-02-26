@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block meta_robots %}noindex,nofollow{% endblock %}
+{% block meta_title %}ورود | {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}ورود به حساب کاربری برای ثبت و پیگیری سفارش‌های سری‌دوزی.{% endblock %}
+{% block content %}
+<h2>ورود</h2>
+<form method="post" class="card">
+  {% csrf_token %}
+  <label>نام کاربری</label>
+  <input name="username" required>
+  <label>رمز عبور</label>
+  <input name="password" type="password" required>
+  {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  <button class="btn" type="submit">ورود</button>
+</form>
+{% endblock %}

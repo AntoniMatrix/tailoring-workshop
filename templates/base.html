@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- SEO -->
+  <title>{% block meta_title %}{{ SITE_NAME }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{{ SITE_DEFAULT_DESCRIPTION }}{% endblock %}"/>
+  <meta name="robots" content="{% block meta_robots %}index,follow{% endblock %}"/>
+  <link rel="canonical" href="{% block canonical %}{{ CURRENT_URL }}{% endblock %}" />
+
+  <!-- OG/Twitter (standard) -->
+  
+  <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container row">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><a href="/"><img src="/static/img/LOGO.png" alt="LOGO" style="width: 100%;"></a></div>
+        
+      </div>
+      <div class="menu">
+
+          <nav class="nav">
+  
+              <a href="/">خانه</a>
+  
+              <a href="/">درباره‌ما</a>
+  
+              <a href="/">تماس با‌ما</a>
+  
+              <a href="/">سوالات متداول</a>
+
+              <a href="/">آموزش</a>
+
+              <a href="/">وبلاگ</a>
+  
+          </nav>
+
+          <nav class="nav">
+    
+            {% if user.is_authenticated %}
+              <a href="/orders/">سفارش‌های من</a>
+    
+              {% if user.is_superuser or user.groups.exists %}
+                <a href="/panel/" class="cta">پنل مدیریت</a>
+              {% endif %}
+    
+              <a href="/accounts/logout/">خروج</a>
+            {% else %}
+              <a href="/accounts/login/">ورود</a>
+              <a href="/accounts/register/" class="cta">ثبت‌نام</a>
+            {% endif %}
+          </nav>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer container">
+    <small>© {{ SITE_NAME }} - سیستم ثبت سفارش سری‌دوزی</small>
+  </footer>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"{{ SITE_NAME|escapejs }}","url":"{{ SITE_URL|escapejs }}"}
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"{{ BUSINESS.type|default:"LocalBusiness"|escapejs }}",
+    "name":"{{ BUSINESS.name|default:SITE_NAME|escapejs }}",
+    "url":"{{ SITE_URL|escapejs }}"
+  }
+  </script>
+
+  <script src="/static/js/utils.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

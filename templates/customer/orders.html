@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block meta_robots %}noindex,nofollow{% endblock %}
+{% block meta_title %}سفارش‌های من | {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}ورود به حساب کاربری برای ثبت و پیگیری سفارش‌های سری‌دوزی.{% endblock %}
+{% block content %}
+<h2>سفارش‌های من</h2>
+
+<div class="grid2">
+  <div class="card">
+    <h3>ثبت سفارش جدید</h3>
+
+    <!-- MVP: single item form -->
+    <label>عنوان سفارش</label>
+    <input id="title" placeholder="مثلاً تولید مانتو 200 عدد">
+
+    <hr>
+
+    <h4>آیتم</h4>
+    <label>نوع محصول</label>
+    <input id="product_type" placeholder="مانتو/شلوار/...">
+
+    <label>تعداد</label>
+    <input id="qty" type="number" value="1">
+
+    <label>سایزبندی</label>
+    <input id="size_range" placeholder="38-46 یا S-XL">
+
+    <label>نوع پارچه</label>
+    <input id="fabric_type" placeholder="کرپ/لینن/...">
+
+    <label>توضیحات</label>
+    <textarea id="notes"></textarea>
+
+    <button class="btn" onclick="createOrder()">ثبت سفارش</button>
+  </div>
+
+  <div class="card">
+    <h3>لیست سفارش‌ها</h3>
+    <div id="ordersList">در حال بارگذاری...</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/customer_orders.js"></script>
+{% endblock %}

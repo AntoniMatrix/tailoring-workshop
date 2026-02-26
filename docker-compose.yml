@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: workshop_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: workshop_db
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: workshop_user
+      MYSQL_PASSWORD: workshop_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
