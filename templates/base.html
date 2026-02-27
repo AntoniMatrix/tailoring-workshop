@@ -67,9 +67,110 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="footer container">
-    <small>© {{ SITE_NAME }} - سیستم ثبت سفارش سری‌دوزی</small>
-  </footer>
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="dot"></span>
+          <span class="name">{{ SITE_NAME }}</span>
+        </div>
+        <p class="muted">
+          سیستم ثبت سفارش سری‌دوزی — شفاف، مرحله‌ای و مناسب همکاری با مزون‌ها و برندهای پوشاک.
+        </p>
+
+        <div class="footer-cta">
+          {% if user.is_authenticated %}
+            <a class="btn" href="/orders/"><i class="bi bi-box-seam"></i> سفارش‌ها</a>
+          {% else %}
+            <a class="btn" href="/accounts/register/"><i class="bi bi-rocket-takeoff"></i> شروع همکاری</a>
+            <a class="btn secondary" href="/accounts/login/"><i class="bi bi-person-lock"></i> ورود</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>دسترسی سریع</h4>
+          <ul>
+            <li><a href="/"><i class="bi bi-house-door"></i> خانه</a></li>
+
+            <li><a href="/orders/"><i class="bi bi-clipboard-check"></i> ثبت/پیگیری سفارش</a></li>
+            
+            <li><a href="/orders/"><i class="bi bi-building"></i>درباره‌ما</a></li>
+
+            <li><a href="/orders/"><i class="bi bi-mortarboard"></i>آموزش</a></li>
+
+            <li><a href="/orders/"><i class="bi bi-newspaper"></i>وبلاگ</a></li>
+            
+            {% if not user.is_authenticated %}
+            <li><a href="/accounts/login/"><i class="bi bi-box-arrow-in-right"></i> ورود</a></li>
+            <li><a href="/accounts/register/"><i class="bi bi-person-plus"></i> ثبت‌نام</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        {% if user.is_superuser or user.groups.exists %}
+          <div class="footer-col">
+            <h4>کارگاه</h4>
+            <ul>
+              <li><a href="#services"><i class="bi bi-gear"></i> خدمات</a></li>
+              <li><a href="/panel/"><i class="bi bi-speedometer2"></i> پنل مدیریت</a></li>
+              <li><a href="/admin/"><i class="bi bi-shield-lock"></i> Django Admin</a></li>
+              <li><a href="#"><i class="bi bi-file-earmark-text"></i> قوانین و شرایط</a></li>
+            </ul>
+          </div>
+        {% endif %}
+
+        <div class="footer-col">
+          <h4>اطلاعات تماس</h4>
+          <ul class="contact">
+            <li><i class="bi bi-geo-alt"></i> تهران — (آدرس را بعداً وارد کنید)</li>
+            <li><i class="bi bi-telephone"></i> 09xxxxxxxxx</li>
+            <li><i class="bi bi-envelope"></i> info@seridoozi-workshop.ir</li>
+            <li><i class="bi bi-clock"></i> شنبه تا پنجشنبه — ۹ تا ۱۸</li>
+          </ul>
+
+          <div class="social">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+        {% if not user.is_superuser or user.groups.exists %}
+        <div class="footer-col">
+          <h4>مجوز‌ها</h4>
+            <ul>
+              <li>
+                <a href="/">
+                  <img src="/" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="/">
+                  <img src="/" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="/">
+                  <img src="/" alt="">
+                </a>
+              </li>
+            </ul>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="muted small">
+        © {{ SITE_NAME }} — همه حقوق محفوظ است.
+      </div>
+      <div class="muted small">
+        ساخته‌شده برای اتوماسیون سفارش‌محور کارگاهی <i class="bi bi-lightning-charge"></i>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <!-- Schema.org -->
   <script type="application/ld+json">
